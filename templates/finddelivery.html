@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<p>快递单导出</p>
+<!--这里的action可以随便写，因为下面有这个按钮的点击事件-->
+<form action="/getresults/" method="post" id="formtype">
+<div>
+   	<textarea id='textarea' rows="10" cols="20" name='textarea'>输入订单号
+11378952
+11390537
+11390538
+11390640
+11390705</textarea>
+</div>
+    <button type="submit" id='sum' >提交</button>
+    <!--<button type="button" id='sum1' onclick="myclick()" >提交1</button>-->
+</form>
+<form action="/export/" method="post">
+    <button type="submit" id='exp' >导出</button>
+</form>
+<style type="text/css">
+<!--
+table{border:2px double #666;width:500px;height:200px;}
+th,td{border:1px double #666;}
+#w-normal{font-weight:normal;}
+#w-bold{font-weight:bold;}
+#w-bolder{font-weight:bolder;}
+#w-lighter{font-weight:lighter;}
+#w-1{font-weight:100;}
+#w-2{font-weight:200;}
+#w-3{font-weight:300;}
+#w-4{font-weight:400;}
+#w-5{font-weight:500;}
+#w-6{font-weight:600;}
+#w-7{font-weight:700;}
+#w-8{font-weight:800;}
+#w-9{font-weight:900;}
+-->
+  
+    table{ width:50%; border:solid 1px #0066FF;}  
+    table td {border:solid 1px #0099ff;}  
+    a{ text-decoration: none;}  
+    .one{background-color: F0FFF0;}  
+    .two{background-color: ADFEDC;}  
+    .over{background-color: F9F900;}  
+</style>   
+
+<body>
+{{count}}
+<table class="table table-bordered" id="tab1">
+    <tr>
+      <th>序号</td>
+      <th>订单号</th>
+      <th>外部单号</th>
+      <th>快递单号</th>
+      <th>快递公司简称</th>
+    </tr>
+    {% for orders_id,ormorder,field2,field3,field4,field5 in orders %}
+      <tr>
+      	<td>{{forloop.counter}}</td>
+      	<td>{{ orders_id }}</td>
+        <td>{{ ormorder }}</td>
+        <td>{{ field2 }}</td>
+        <td>{{ field5 }}</td>
+      </tr>
+    {% endfor %}
+</table>
+
+<script type="text/javascript">  
+ var name;  //存储tr对象的类名，当鼠标移开时进行恢复  
+ function trcolor(){  //表格行颜色间隔显示  
+     var tabNode = document.getElementsByTagName("table")[0];  
+     var trNodes = tabNode.rows;  
+     for(var x=1;x<trNodes.length;x++){  
+         if(x%2 == 1)  
+             trNodes[x].className = "one" ;   
+         else   
+             trNodes[x].className = "two" ;  
+         trNodes[x].onmouseover = function(){  //高亮显示  
+             name = this.className;  
+             this.className = "over";  
+         }  
+         trNodes[x].onmouseout = function(){  //tr对象添加onmouseout事件属性  
+             this.className = name ;  
+         }  
+     }  
+ }  
+    window.onload = trcolor ;  
+    
+
+
+function number(){
+        //$('table tr:not(:first)').remove();
+        var table =document.getElementById("tab1");
+        var len = table.rows.length;
+        alert(document.getElementById("tr").rowIndex);
+}
+
+
+
+ function number()
+ {
+	for(var i=0;i< $(".numberClass").length;i++)
+	{
+		$(".numberClass").get(i).innerHTML = i+1;
+	}
+	
+}
+
+   function myclick(){
+         
+         //var text = document.getElementById("textarea").value; 
+         //alert(text)
+         //document.getElementById("formtype").submit();
+         number(); 
+         }
+
+      
+</script>  
+
+
+</body>  
+</html>
