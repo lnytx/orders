@@ -69,6 +69,7 @@ def get_request(request):
         order_list = select_table(sql)
         count=len(order_list)
         print("order_list",order_list)
+        print("type(order_list)",type(order_list))
     return render(request, 'finddelivery.html', { 'orders': order_list },{'count':count})
 
 #导出xls      
